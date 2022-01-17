@@ -5,9 +5,12 @@ name: "Ansible Molecule (2.10/default)"
 
 on:
   push:
-    tags_ignore:
-      - '*'
+    branches:
+      - '**'
+    tags-ignore:
+      - '*.*'
   pull_request:
+    types: [assigned]
   schedule:
     - cron: '35 18 18 * *'
 
@@ -33,7 +36,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        platform: [debian9, debian10, debian11, ubuntu1804, ubuntu2004, centos7, centos-stream8, centos-stream9, ubi8, fedora34, fedora35, amazonlinux]  # yamllint disable-line rule:line-length
+        platform: [centos7, centos-stream8, centos-stream9, ubi8, amazonlinux, rockylinux8, almalinux8]  # yamllint disable-line rule:line-length
 
     steps:
       - name: checkout
