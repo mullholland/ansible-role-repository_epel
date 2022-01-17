@@ -82,11 +82,11 @@ The machine needs to be prepared in CI this is done using `molecule/default/prep
   gather_facts: true
 
   roles:
-    - name: mullholland.repository_codereadybuilder
+    - role: mullholland.repository_codereadybuilder
       when:
         - (ansible_distribution == "RedHat" and ansible_distribution_major_version == "8") or
           (ansible_distribution == "CentOS" and ansible_distribution_major_version == "9")
-    - name: mullholland.repository_powertools
+    - role: mullholland.repository_powertools
       when:
         - ansible_distribution in [ "CentOS", "Rocky", "AlmaLinux" ]
         - ansible_distribution_major_version == "8"
