@@ -1,0 +1,45 @@
+---
+repository_epel_url: "https://dl.fedoraproject.org/pub/epel/epel-release-latest-{{ repository_epel_version }}.noarch.rpm"
+repository_epel_key_url: "https://dl.fedoraproject.org/pub/epel/RPM-GPG-KEY-EPEL-{{ repository_epel_version }}"
+
+_repository_epel_version:
+  RedHat:
+    "7": 7
+    "8": 8
+  CentOS:
+    "7": 7
+    "8": 8
+    "9": 9
+  Rocky:
+    "8": 8
+  AlmaLinux:
+    "8": 8
+  Amazon:
+    "2": 7
+
+repository_epel_version: "{{ _repository_epel_version[ansible_distribution][ansible_distribution_major_version] }}"
+
+repository_epel_packages:
+  RedHat:
+    "7":
+      - "https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm"
+    "8":
+      - "https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm"
+  CentOS:
+    "7":
+      - "epel-release"
+    "8":
+      - "epel-release"
+      - "epel-next-release"
+    "9":
+      - "https://dl.fedoraproject.org/pub/epel/epel-release-latest-9.noarch.rpm"
+      - "https://dl.fedoraproject.org/pub/epel/epel-next-release-latest-9.noarch.rpm"
+  Rocky:
+    "8":
+      - "epel-release"
+  AlmaLinux:
+    "8":
+      - "epel-release"
+  Amazon:
+    "2":
+      - "https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm"

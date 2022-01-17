@@ -1,0 +1,28 @@
+---
+galaxy_info:
+  author: Mullholland
+  namespace: mullholland
+  role_name: repository_epel
+  description: Add the epel Repository to the System
+  license: MIT
+  company: none
+  min_ansible_version: "2.10"
+
+
+  platforms:
+    - name: EL
+      versions:
+        - 7
+        - 8
+        - 9
+    - name: Amazon
+      versions:
+        - Candidate
+
+  galaxy_tags:
+    - development
+    - system
+
+dependencies: []
+# List your role dependencies here, one per line. Be sure to remove the '[]' above,
+# if you add dependencies to this list.

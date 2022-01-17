@@ -1,0 +1,16 @@
+---
+- name: RedHat/CentOS | Import EPEL GPG key.
+  rpm_key:
+    key: "{{ repository_epel_key_url }}"
+    state: present
+  register: result
+  until: result is succeeded
+  retries: 5
+  delay: 10
+
+- name: RedHat/CentOS | Install EPEL repository
+  yum:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - "{{ repository_epel_packages[ansible_distribution][ansible_distribution_major_version] }}"
