@@ -1,5 +1,5 @@
 ---
 roles:
   # Install a role from Ansible Galaxy.
-  - name: mullholland.repository_powertools
-  - name: mullholland.repository_codereadybuilder
+  - src: mullholland.repository_powertools
+  - src: mullholland.repository_codereadybuilder
