@@ -8,7 +8,7 @@ molecule_exceptions:
     reason: "repo only supports RedHat/CentOS Server"
 molecule_scenarios:
   - scenario: "default"
-    ansible: ["previous", "current", "development"]
+    ansible: ["previous", "current"]
     platforms:
       - "centos7"
       - "centos-stream8"
