@@ -1,5 +1,10 @@
 # [repository_epel](#repository_epel)
 
+**IMPORTANT**
+This role will no longer be updated. you can use [robertdebock/ansible-role-epel](https://github.com/robertdebock/ansible-role-epel) as an alternative.
+
+---
+
 |GitHub|GitLab|
 |------|------|
 |[![github](https://github.com/mullholland/ansible-role-repository_epel/workflows/Ansible%20Molecule/badge.svg)](https://github.com/mullholland/ansible-role-repository_epel/actions)|[![gitlab](https://gitlab.com/mullholland/ansible-role-repository_epel/badges/main/pipeline.svg)](https://gitlab.com/mullholland/ansible-role-repository_epel)|
