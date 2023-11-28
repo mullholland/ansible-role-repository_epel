@@ -13,7 +13,6 @@ galaxy_info:
     - name: EL
       versions:
         - all
-        - 9
     - name: Amazon
       versions:
         - Candidate

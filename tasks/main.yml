@@ -1,6 +1,7 @@
 ---
 
-- include_tasks: epel.yml
+- name: Check OS versions
+  ansible.builtin.include_tasks: epel.yml
   when:
     - (ansible_distribution == "Amazon" and
       ansible_distribution_major_version == "2") or

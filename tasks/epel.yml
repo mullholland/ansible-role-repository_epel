@@ -1,5 +1,5 @@
 ---
-- name: RedHat/CentOS | Import EPEL GPG key.
+- name: epel | RedHat/CentOS | Import EPEL GPG key.
   ansible.builtin.rpm_key:
     key: "{{ repository_epel_key_url }}"
     state: present
@@ -8,7 +8,7 @@
   retries: 5
   delay: 10
 
-- name: RedHat/CentOS | Install EPEL repository
+- name: epel | RedHat/CentOS | Install EPEL repository
   ansible.builtin.yum:
     name: "{{ item }}"
     state: present
