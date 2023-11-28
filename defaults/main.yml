@@ -1,5 +1,4 @@
 ---
-repository_epel_url: "https://dl.fedoraproject.org/pub/epel/epel-release-latest-{{ repository_epel_version }}.noarch.rpm"
 repository_epel_key_url: "https://dl.fedoraproject.org/pub/epel/RPM-GPG-KEY-EPEL-{{ repository_epel_version }}"
 
 _repository_epel_version:
