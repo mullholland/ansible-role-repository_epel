@@ -12,6 +12,8 @@
           - "zork"
         "8":
           - "zork"
+        "9":
+          - "zork"
       CentOS:
         "7":
           - "zork"
@@ -22,8 +24,12 @@
       Rocky:
         "8":
           - "zork"
+        "9":
+          - "zork"
       AlmaLinux:
         "8":
+          - "zork"
+        "9":
           - "zork"
       Amazon:
         "2":
