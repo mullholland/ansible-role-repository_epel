@@ -11,8 +11,10 @@ _repository_epel_version:
     "9": 9
   Rocky:
     "8": 8
+    "9": 9
   AlmaLinux:
     "8": 8
+    "9": 9
   Amazon:
     "2": 7
 
@@ -36,8 +38,12 @@ repository_epel_packages:
   Rocky:
     "8":
       - "epel-release"
+    "9":
+      - "epel-release"
   AlmaLinux:
     "8":
+      - "epel-release"
+    "9":
       - "epel-release"
   Amazon:
     "2":
