@@ -56,6 +56,7 @@ _repository_epel_version:
     "7": 7
     "8": 8
     "9": 9
+    "10": 10
   Rocky:
     "8": 8
     "9": 9
@@ -89,6 +90,8 @@ repository_epel_packages:
     "9":
       - "https://dl.fedoraproject.org/pub/epel/epel-release-latest-9.noarch.rpm"
       - "https://dl.fedoraproject.org/pub/epel/epel-next-release-latest-9.noarch.rpm"
+    "10":
+      - "epel-release"
   Rocky:
     "8":
       - "epel-release"
@@ -134,6 +137,9 @@ This role has been tested on these [container images](https://hub.docker.com/u/m
 |container|tags|
 |---------|----|
 |[EL](https://hub.docker.com/r/mullholland/enterpriselinux)|all|
+|[Rocky](https://hub.docker.com/r/mullholland/rockylinux)|all|
+|[AlmaLinux](https://hub.docker.com/r/mullholland/almalinux)|all|
+|[CentOS](https://hub.docker.com/r/mullholland/centos)|all|
 
 The minimum version of Ansible required is 2.10, tests have been done to:
 

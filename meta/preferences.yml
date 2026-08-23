@@ -1,0 +1,10 @@
+---
+# CentOS Stream has no dedicated entry in Ansible Galaxy's meta/main.yml
+# platform schema (only the generic "EL" umbrella covers RHEL clones), but
+# this role does support and test it (see defaults/main.yml). Add it to the
+# CI matrix / README compatibility table via this generator extension point
+# instead, without violating the Galaxy meta schema.
+extra_platforms:
+  - name: CentOS
+    versions:
+      - all

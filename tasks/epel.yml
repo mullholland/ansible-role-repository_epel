@@ -1,21 +1,23 @@
 ---
-# ansible.builtin.rpm_key requires the gpg2 executable on the target, which
-# EL10 no longer installs by default (dropped the standalone gpg2 package
-# split; it now ships from gnupg2 like everywhere else, but that package
-# itself is not part of the minimal/UBI base install).
-- name: epel | Ensure gnupg2 is installed
-  ansible.builtin.package:
-    name: gnupg2
-    state: present
+# ansible.builtin.rpm_key shells out to gpg/gpg2 to inspect the key, and its
+# behavior is inconsistent across GnuPG versions (e.g. EL10 ships GnuPG 2.4.5,
+# which emits "packet(6) with unknown version 6" through some ansible-core
+# releases). Importing directly via rpm sidesteps the module entirely.
+- name: "epel | Check if imported GPG key: epel{{ repository_epel_version }}"  # noqa: command-instead-of-module
+  ansible.builtin.command:
+    cmd: rpm -q gpg-pubkey --qf "%{summary}\n"
+  register: repository_epel_gpg_keys
+  changed_when: false
 
-- name: epel | RedHat/CentOS | Import EPEL GPG key
-  ansible.builtin.rpm_key:
-    key: "{{ repository_epel_key_url }}"
-    state: present
+- name: epel | Import EPEL GPG key  # noqa: command-instead-of-module
+  ansible.builtin.command:
+    cmd: "rpm --import {{ repository_epel_key_url }}"
+  when: "'epel' ~ repository_epel_version not in repository_epel_gpg_keys.stdout"
   register: result
   until: result is succeeded
   retries: 5
   delay: 10
+  changed_when: true
 
 - name: epel | CentOS/Rocky/AlmaLinux 9+ | Enable CRB repository
   ansible.builtin.command:

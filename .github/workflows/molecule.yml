@@ -37,6 +37,22 @@ jobs:
             tag: "9"
           - image: "redhat"
             tag: "10"
+          - image: "rockylinux"
+            tag: "8"
+          - image: "rockylinux"
+            tag: "9"
+          - image: "rockylinux"
+            tag: "10"
+          - image: "almalinux"
+            tag: "8"
+          - image: "almalinux"
+            tag: "9"
+          - image: "almalinux"
+            tag: "10"
+          - image: "centos"
+            tag: "9"
+          - image: "centos"
+            tag: "10"
     steps:
       - name: checkout
         uses: actions/checkout@v6
