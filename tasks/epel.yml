@@ -1,5 +1,5 @@
 ---
-- name: epel | RedHat/CentOS | Import EPEL GPG key.
+- name: epel | RedHat/CentOS | Import EPEL GPG key
   ansible.builtin.rpm_key:
     key: "{{ repository_epel_key_url }}"
     state: present
@@ -8,9 +8,19 @@
   retries: 5
   delay: 10
 
-- name: epel | RedHat/CentOS | Install EPEL repository
-  ansible.builtin.yum:
+- name: epel | CentOS/Rocky/AlmaLinux 9+ | Enable CRB repository
+  ansible.builtin.command:
+    cmd: dnf config-manager --set-enabled crb
+  changed_when: true
+  when:
+    - repository_epel_crb_enable | bool
+    - ansible_facts['distribution'] in ["CentOS", "Rocky", "AlmaLinux"]
+    - ansible_facts['distribution_major_version'] | int >= 9
+
+- name: epel | Install EPEL repository
+  ansible.builtin.dnf:
     name: "{{ item }}"
     state: present
+    disable_gpg_check: true
   with_items:
-    - "{{ repository_epel_packages[ansible_distribution][ansible_distribution_major_version] }}"
+    - "{{ repository_epel_packages[ansible_facts['distribution']][ansible_facts['distribution_major_version']] }}"

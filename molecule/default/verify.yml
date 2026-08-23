@@ -14,6 +14,8 @@
           - "zork"
         "9":
           - "zork"
+        "10":
+          - "cowsay"
       CentOS:
         "7":
           - "zork"
@@ -26,11 +28,15 @@
           - "zork"
         "9":
           - "zork"
+        "10":
+          - "cowsay"
       AlmaLinux:
         "8":
           - "zork"
         "9":
           - "zork"
+        "10":
+          - "cowsay"
       Amazon:
         "2":
           - "zork"
@@ -39,11 +45,11 @@
     - name: SmokeTests
       ansible.builtin.debug:
         msg:
-          - "ansible_version => {{ansible_version}}"
-          - "ansible_distribution => {{ ansible_distribution }}"
-          - "ansible_distribution_major_version => {{ ansible_distribution_major_version }}"
-          - "ansible_os_family  => {{ ansible_os_family}}"
-          - "ansible_system  => {{ ansible_system }}"
+          - "ansible_version => {{ ansible_version }}"
+          - "ansible_distribution => {{ ansible_facts['distribution'] }}"
+          - "ansible_distribution_major_version => {{ ansible_facts['distribution_major_version'] }}"
+          - "ansible_os_family  => {{ ansible_facts['os_family'] }}"
+          - "ansible_system  => {{ ansible_facts['system'] }}"
 
     - name: Test if repository exists and is enabled
       community.general.ini_file:
@@ -57,7 +63,7 @@
       failed_when: (molecule_repository is changed) or (molecule_repository is failed)
 
     - name: Check package is installable from repository
-      ansible.builtin.yum:
-        name: "{{ molecule_repo_package[ansible_distribution][ansible_distribution_major_version] }}"
+      ansible.builtin.dnf:
+        name: "{{ molecule_repo_package[ansible_facts['distribution']][ansible_facts['distribution_major_version']] }}"
         state: present
       register: package_installed

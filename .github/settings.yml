@@ -5,4 +5,4 @@
 repository:
   description: Add the epel Repository to the System
   homepage: https://mullholland.net
-  topics: development, system, ansible, molecule, tox, playbook
+  topics: development, system, ansible, molecule, playbook
