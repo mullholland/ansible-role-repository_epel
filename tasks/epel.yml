@@ -19,6 +19,16 @@
   delay: 10
   changed_when: true
 
+- name: epel | Check enabled repositories  # noqa: command-instead-of-module
+  ansible.builtin.command:
+    cmd: dnf repolist --enabled
+  register: repository_epel_enabled_repos
+  changed_when: false
+  when:
+    - repository_epel_crb_enable | bool
+    - ansible_facts['distribution'] in ["CentOS", "Rocky", "AlmaLinux"]
+    - ansible_facts['distribution_major_version'] | int >= 9
+
 - name: epel | CentOS/Rocky/AlmaLinux 9+ | Enable CRB repository
   ansible.builtin.command:
     cmd: dnf config-manager --set-enabled crb
@@ -27,6 +37,7 @@
     - repository_epel_crb_enable | bool
     - ansible_facts['distribution'] in ["CentOS", "Rocky", "AlmaLinux"]
     - ansible_facts['distribution_major_version'] | int >= 9
+    - "'crb' not in repository_epel_enabled_repos.stdout"
 
 - name: epel | Install EPEL repository
   ansible.builtin.dnf:
