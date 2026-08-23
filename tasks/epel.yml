@@ -1,4 +1,13 @@
 ---
+# ansible.builtin.rpm_key requires the gpg2 executable on the target, which
+# EL10 no longer installs by default (dropped the standalone gpg2 package
+# split; it now ships from gnupg2 like everywhere else, but that package
+# itself is not part of the minimal/UBI base install).
+- name: epel | Ensure gnupg2 is installed
+  ansible.builtin.package:
+    name: gnupg2
+    state: present
+
 - name: epel | RedHat/CentOS | Import EPEL GPG key
   ansible.builtin.rpm_key:
     key: "{{ repository_epel_key_url }}"
