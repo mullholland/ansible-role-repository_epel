@@ -12,7 +12,9 @@
 - name: epel | Import EPEL GPG key  # noqa: command-instead-of-module
   ansible.builtin.command:
     cmd: "rpm --import {{ repository_epel_key_url }}"
-  when: "'epel' ~ repository_epel_version not in repository_epel_gpg_keys.stdout"
+  when: >-
+    ('epel' ~ repository_epel_version not in repository_epel_gpg_keys.stdout)
+    and ('EPEL (' ~ repository_epel_version ~ ')' not in repository_epel_gpg_keys.stdout)
   register: result
   until: result is succeeded
   retries: 5
